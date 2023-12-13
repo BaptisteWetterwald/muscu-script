@@ -67,13 +67,13 @@ def get_picture_creation_date(file):
     # If no date is found, return None or handle accordingly
     return None
 
+
 def get_video_creation_date(video):
     return datetime.datetime.fromtimestamp(os.path.getmtime(video))
 
+
 def get_date_diff(date):
-    print("comparing " + str(date) + " to " + str(start_date))
     if start_date > date:
-        print("picture taken before starting working out")
         return -1, -1, -1, -1
     diff = date - start_date
     years = diff.days // 365
@@ -130,14 +130,13 @@ def copy_file(file):
     new_path = os.path.join(output, relative_path)
     os.makedirs(new_path, exist_ok=True)
     # copy the file
-    print("Checking " + os.path.basename(file))
     new_name = get_new_name(file)
     new_file = os.path.join(new_path, new_name + os.path.splitext(file)[1])
     
     new_file_2 = os.path.join(output, os.path.basename(new_file))
     shutil.copyfile(file, new_file)
     shutil.copyfile(new_file, new_file_2)
-    #print("copied " + file + " to " + new_file)
+    print("copied " + file + " to " + new_file)
 
 
 for root, dirs, files in os.walk(input_folder):
